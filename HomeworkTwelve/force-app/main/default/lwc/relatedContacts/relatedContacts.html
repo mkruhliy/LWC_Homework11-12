@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Related Contacts">
+        <div class="slds-m-around_medium">
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <div key={contact.Id} class="slds-box slds-m-around_medium">
+                        <p>First Name: {contact.Name}</p>
+                        <p>Last Name: {contact.Title}</p>
+                        <p>Email: {contact.Email}</p>
+                        <p>Email: {contact.Phone}</p>
+                    </div>
+                    <!-- <li key={contact.Id}>
+                        <p>Name: {contact.Name}, Title: {contact.Title}, Email: {contact.Email}, Phone: {contact.Phone}</p>
+                    </li> -->
+                </template>
+            </template>
+            <template if:false={contacts}>
+                <p><strong>No related Contacts found</strong></p>
+            </template>
+    
+            <lightning-button label="Add Contact" onclick={handleAddContact} variant="base"></lightning-button>
+    
+            <template if:true={showContactForm}>
+                <div class="slds-box slds-m-around_medium">
+                    <lightning-input label="Last Name" value={newContactLastName} onchange={handleLastNameChange}></lightning-input>
+                    <lightning-button label="Save Contact" onclick={handleSaveContact} variant="brand"></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
